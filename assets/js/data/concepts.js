@@ -1,268 +1,272 @@
-/* CONCEPTS.JS
-   Web Programlama Temel Kavramlar Modülü
-   Not: Bu bölümde 'code' özelliği yoktur, sadece açıklama ve görsel şemalar vardır.
-*/
+/* CONCEPTS.JS - Temel Kavramlar (Görsel Ağırlıklı & Detaylı Anlatım) */
 
 const conceptsData = [
-    // 1. GENEL GİRİŞ
+    // 1. WEB NASIL ÇALIŞIR? (Hikayeleştirme)
     {
-        id: "kavram-web",
+        id: "kavram-web-nasil",
         category: "0. Temel Kavramlar",
-        title: "Web Programlama Nedir?",
+        title: "Web Nasıl Çalışır?",
         description: `
-            <p><strong>Web Tabanlı Programlama</strong>, internet tarayıcıları (Chrome, Firefox vb.) üzerinde çalışan uygulamaların geliştirilmesidir.</p>
-            <p>Bu süreç iki ana dünyaya ayrılır:</p>
-            <ul>
-                <li><strong>Frontend (Ön Uç):</strong> Kullanıcının gördüğü, tıkladığı kısımdır. Tasarım ve estetik buradadır.</li>
-                <li><strong>Backend (Arka Uç):</strong> Görünmeyen, verilerin işlendiği ve kaydedildiği mutfak kısmıdır.</li>
-            </ul>
+            <p class="lead">Bir web sitesine girdiğinizde arka planda saniyeler içinde gerçekleşen devasa bir trafik vardır. Bunu bir <strong>Restoran</strong> örneği ile anlayalım.</p>
             
-            <hr class="my-4" style="border-color: #444;">
-            
-            <h6 class="text-muted mb-3">Çalışma Mantığı:</h6>
-            <div class="row text-center text-white align-items-center p-3 border border-dark rounded bg-dark">
-                <div class="col-5 bg-primary p-3 rounded shadow">
-                    <h5>Frontend</h5>
-                    <small>Tarayıcı (Browser)</small>
-                    <hr>
-                    HTML / CSS / JS
-                </div>
-                
-                <div class="col-2">
-                    <h2 style="color: #6c757d;">↔</h2>
-                </div>
-
-                <div class="col-5 bg-secondary p-3 rounded shadow">
-                    <h5>Backend</h5>
-                    <small>Sunucu (Server)</small>
-                    <hr>
-                    PHP / Python / SQL
-                </div>
-            </div>
-        `
-    },
-
-    // 2. İSTEMCİ VE SUNUCU
-    {
-        id: "kavram-istemci-sunucu",
-        category: "0. Temel Kavramlar",
-        title: "İstemci (Client) ve Sunucu (Server)",
-        description: `
-            <p>İnternet, milyarlarca cihazın birbiriyle konuşmasıdır. Bu konuşmada iki rol vardır:</p>
-            <ul>
-                <li><strong>İstemci (Client):</strong> Hizmet isteyen taraftır. Sizin bilgisayarınız veya telefonunuzdaki tarayıcıdır. (Örn: "Bana bu sayfayı göster" der.)</li>
-                <li><strong>Sunucu (Server):</strong> İstemcinin isteğini yerine getiren, 7/24 açık güçlü bilgisayarlardır. (Örn: Sayfa dosyalarını gönderir.)</li>
-            </ul>
-
-            <hr class="my-4" style="border-color: #444;">
-
-            <h6 class="text-muted mb-3">Gerçek Hayat Örneği (Restoran):</h6>
-            <div class="p-3 border border-dark rounded bg-dark">
-                <div class="d-flex justify-content-between align-items-center mt-3 text-center">
+            <div style="background: #2b3035; padding: 25px; border-radius: 15px; border: 1px solid #444; margin: 20px 0;">
+                <div style="display: flex; flex-direction: column; gap: 15px;">
                     
-                    <div style="width: 30%;">
-                        <span style="font-size:2rem;">👤</span><br>
-                        <strong>Müşteri</strong><br>
-                        <span class="badge bg-secondary">İstemci</span>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="font-size: 2rem;">🤵‍♂️</div>
+                        <div style="flex:1;">
+                            <strong style="color: #3dd5f3;">1. İstemci (Siz):</strong>
+                            <p style="margin:0; font-size: 0.9rem; color: #adb5bd;">Restorana giden müşterisiniz. Menüden bir yemek (web sayfası) seçip garsona sipariş verirsiniz.</p>
+                        </div>
                     </div>
 
-                    <div style="width: 40%; font-size: 0.8rem; color: #adb5bd;">
-                        Sipariş Verir (Request) ➡ <br>
-                        ⬅ Yemeği Getirir (Response)
+                    <div style="text-align: center; color: #666;">⬇️ <em>Sipariş (Request)</em> ⬇️</div>
+
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="font-size: 2rem;">👨‍🍳</div>
+                        <div style="flex:1;">
+                            <strong style="color: #e74c3c;">2. Sunucu (Mutfak):</strong>
+                            <p style="margin:0; font-size: 0.9rem; color: #adb5bd;">Mutfaktaki şef siparişi alır, malzemeleri (veritabanı) kullanır, yemeği hazırlar ve tabağı düzenler.</p>
+                        </div>
                     </div>
 
-                    <div style="width: 30%;">
-                        <span style="font-size:2rem;">👨‍🍳</span><br>
-                        <strong>Mutfak</strong><br>
-                        <span class="badge bg-warning text-dark">Sunucu</span>
+                    <div style="text-align: center; color: #666;">⬇️ <em>Servis (Response)</em> ⬇️</div>
+
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="font-size: 2rem;">🍽️</div>
+                        <div style="flex:1;">
+                            <strong style="color: #2ecc71;">3. Tarayıcı (Masa):</strong>
+                            <p style="margin:0; font-size: 0.9rem; color: #adb5bd;">Yemek masanıza gelir. Siz mutfakta ne olduğunu görmezsiniz, sadece önünüze gelen sunumu (Web Sitesini) görürsünüz.</p>
+                        </div>
                     </div>
 
                 </div>
             </div>
-        `
+            <p>İşte web tabanlı programlama, bu mutfağı yönetme ve tabağı süsleme sanatıdır.</p>
+        `,
+        code: null // Kod kutusunu gizle
     },
 
-    // 3. HTTP PROTOKOLÜ
+    // 2. HTML - CSS - JS (Muhteşem Üçlü)
     {
-        id: "kavram-http",
+        id: "kavram-uclu",
         category: "0. Temel Kavramlar",
-        title: "HTTP Protokolü",
+        title: "Web'in 3 Yapı Taşı",
         description: `
-            <p><strong>HTTP (HyperText Transfer Protocol)</strong>, istemci ve sunucunun anlaştığı dildir. Tarayıcı sunucuya bir "İstek" (Request) gönderir, sunucu da bir "Cevap" (Response) döner.</p>
-            <p>Sık karşılaşılan HTTP Durum Kodları:</p>
-            <ul>
-                <li><span class="text-success">200 OK:</span> Başarılı, sayfa bulundu.</li>
-                <li><span class="text-danger">404 Not Found:</span> Sayfa bulunamadı.</li>
-                <li><span class="text-warning">500 Server Error:</span> Sunucu hatası.</li>
-            </ul>
+            <p>Bir web sitesi tek bir dosyadan oluşmaz. Her biri farklı bir görevi üstlenen üç temel teknolojinin birleşimidir. Bunu bir <strong>İnsan Bedeni</strong> üzerinden düşünelim.</p>
 
-            <hr class="my-4" style="border-color: #444;">
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 30px;">
+                
+                <div style="background: linear-gradient(145deg, #e44d26, #f16529); color: white; padding: 20px; border-radius: 12px; width: 30%; min-width: 250px; text-align: center; box-shadow: 0 4px 15px rgba(228, 77, 38, 0.4);">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">🦴</div>
+                    <h3>HTML</h3>
+                    <p style="font-size: 0.9rem; opacity: 0.9;">İskelet Sistemi</p>
+                    <hr style="border-color: rgba(255,255,255,0.3);">
+                    <p style="font-size: 0.85rem;">Sitenin kemikleridir. Başlık nerede? Resim nerede? İçerik nedir? Sadece yapıyı belirler, görüntüsü çirkindir.</p>
+                </div>
 
-            <div class="list-group">
-              <div class="list-group-item bg-dark text-white border-secondary">
-                <div class="d-flex w-100 justify-content-between">
-                  <h6 class="mb-1 text-primary">1. Request (İstek)</h6>
+                <div style="background: linear-gradient(145deg, #264de4, #2965f1); color: white; padding: 20px; border-radius: 12px; width: 30%; min-width: 250px; text-align: center; box-shadow: 0 4px 15px rgba(38, 77, 228, 0.4);">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">👕</div>
+                    <h3>CSS</h3>
+                    <p style="font-size: 0.9rem; opacity: 0.9;">Kıyafet & Deri</p>
+                    <hr style="border-color: rgba(255,255,255,0.3);">
+                    <p style="font-size: 0.85rem;">Sitenin stilistidir. İskelete kıyafet giydirir, makyaj yapar. Renkler, boşluklar ve estetik buradan sorulur.</p>
                 </div>
-                <small class="text-muted">Tarayıcı: "google.com anasayfasını getir." (GET)</small>
-              </div>
-              
-              <div class="list-group-item bg-dark text-white border-secondary">
-                <div class="d-flex w-100 justify-content-between">
-                  <h6 class="mb-1 text-success">2. Response (Cevap)</h6>
+
+                <div style="background: linear-gradient(145deg, #f0db4f, #d4bf38); color: black; padding: 20px; border-radius: 12px; width: 30%; min-width: 250px; text-align: center; box-shadow: 0 4px 15px rgba(240, 219, 79, 0.4);">
+                    <div style="font-size: 3rem; margin-bottom: 10px;">🧠</div>
+                    <h3>JavaScript</h3>
+                    <p style="font-size: 0.9rem; font-weight: bold;">Kas & Beyin</p>
+                    <hr style="border-color: rgba(0,0,0,0.1);">
+                    <p style="font-size: 0.85rem;">Sitenin hareket mekanizmasıdır. Kolunu kaldır, butona tıklayınca hesapla, veriyi getir gibi eylemleri yapar.</p>
                 </div>
-                <small class="text-muted">Sunucu: "Tamam, işte dosyalar (Status: 200)."</small>
-              </div>
             </div>
-        `
+        `,
+        code: null
     },
 
-    // 4. TEMEL TEKNOLOJİLER
+    // 3. FRONTEND vs BACKEND
     {
-        id: "kavram-teknolojiler",
+        id: "kavram-front-back",
         category: "0. Temel Kavramlar",
-        title: "Temel Teknolojiler",
+        title: "Frontend ve Backend Farkı",
         description: `
-            <p>Bir web sitesini oluşturmak için farklı teknolojiler bir arada kullanılır. Bir bina inşaatı gibi düşünebiliriz:</p>
-            <ul>
-                <li><strong>HTML:</strong> Binanın kolonları ve tuğlalarıdır (İskelet).</li>
-                <li><strong>CSS:</strong> Boya, dekorasyon ve dış cephedir (Tasarım).</li>
-                <li><strong>JavaScript:</strong> Elektrik tesisatı, asansörler ve kapı zilleridir (Hareket & İşlev).</li>
-            </ul>
+            <p>Yazılım dünyasında projeler iki ana cepheye ayrılır. Bir buzdağı düşünün; suyun üstü ve altı.</p>
 
-            <hr class="my-4" style="border-color: #444;">
+            <div style="position: relative; margin: 40px 0; border: 2px dashed #444; border-radius: 10px; overflow: hidden;">
+                
+                <div style="background-color: #212529; padding: 20px; text-align: center;">
+                    <h4 style="color: #3dd5f3;">🖥️ Frontend (Ön Yüz)</h4>
+                    <p style="color: #adb5bd; font-size: 0.9rem;">Kullanıcının gördüğü her şey.</p>
+                    <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+                        <span style="background: #333; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem;">HTML</span>
+                        <span style="background: #333; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem;">CSS</span>
+                        <span style="background: #333; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem;">React</span>
+                    </div>
+                </div>
 
-            <div class="row text-center g-2">
-                <div class="col-md-4">
-                    <div class="p-3 border border-danger rounded bg-dark">
-                        <h5 class="text-danger">HTML</h5>
-                        <small>İçerik & Yapı</small>
+                <div style="height: 4px; background: linear-gradient(90deg, #3dd5f3, #e74c3c);"></div>
+
+                <div style="background-color: #1a1d20; padding: 20px; text-align: center;">
+                    <h4 style="color: #e74c3c;">⚙️ Backend (Arka Yüz)</h4>
+                    <p style="color: #adb5bd; font-size: 0.9rem;">Görünmeyen işlem merkezi ve veritabanı.</p>
+                    <div style="display: flex; justify-content: center; gap: 10px; margin-top: 10px;">
+                        <span style="background: #333; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem;">Node.js</span>
+                        <span style="background: #333; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem;">Python</span>
+                        <span style="background: #333; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem;">Java</span>
+                        <span style="background: #333; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem;">SQL</span>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="p-3 border border-primary rounded bg-dark">
-                        <h5 class="text-primary">CSS</h5>
-                        <small>Görünüm & Stil</small>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="p-3 border border-warning rounded bg-dark">
-                        <h5 class="text-warning">JS</h5>
-                        <small>Etkileşim</small>
-                    </div>
-                </div>
+
             </div>
-        `
+            
+            <ul>
+                <li><strong>Frontend Geliştirici:</strong> Tasarımın birebir aynısını koda döker. Estetik ve kullanıcı deneyimiyle ilgilenir.</li>
+                <li><strong>Backend Geliştirici:</strong> Sistemin güvenliği, hızı ve veri doğruluğu ile ilgilenir.</li>
+                <li><strong>Full Stack Geliştirici:</strong> Her iki tarafa da hakim olan kişidir.</li>
+            </ul>
+        `,
+        code: null
     },
 
-    // 5. DOMAIN VE HOSTING
+    // 4. TARAYICILAR (BROWSER)
+    {
+        id: "kavram-browser",
+        category: "0. Temel Kavramlar",
+        title: "Web Tarayıcıları (Browsers)",
+        description: `
+            <p>Tarayıcılar (Chrome, Firefox, Safari), internetin tercümanlarıdır. Bizim yazdığımız kodları (HTML/CSS) okurlar ve insanların anlayabileceği görsel bir sayfaya dönüştürürler.</p>
+            
+            <div style="background: #191c1f; padding: 20px; border-radius: 10px; border-left: 5px solid #f1c40f;">
+                <h5 style="color: #f1c40f;">🤔 Nasıl Çalışır?</h5>
+                <p>Siz bir siteye girdiğinizde sunucu tarayıcıya sadece <strong>yazı (kod)</strong> gönderir.</p>
+                <div style="background: #000; padding: 10px; font-family: monospace; color: lime; font-size: 0.8rem; margin-bottom: 10px;">
+                    &lt;h1&gt;Merhaba&lt;/h1&gt;<br>
+                    &lt;style&gt; h1 { color: red; } &lt;/style&gt;
+                </div>
+                <p>Tarayıcı bu kodu alır, "Yorumlar" (Render) ve ekrana kırmızı bir "Merhaba" yazısı basar.</p>
+            </div>
+            <br>
+            <p>Bu yüzden yazdığımız kodun her tarayıcıda düzgün çalışıp çalışmadığını kontrol etmeliyiz.</p>
+        `,
+        code: null
+    },
+
+    // 5. DOMAIN & HOSTING
     {
         id: "kavram-domain-hosting",
         category: "0. Temel Kavramlar",
-        title: "Domain ve Hosting",
+        title: "Domain ve Hosting Nedir?",
         description: `
-            <p>Web sitenizi yayınlamak için iki hizmete abone olmanız gerekir:</p>
-            <p><strong>1. Domain (Alan Adı):</strong> Sitenin adresidir (webschool.com gibi). İnsanların sitenizi bulmasını sağlar.</p>
-            <p><strong>2. Hosting (Barındırma):</strong> Sitenin dosyalarının (HTML, Resimler) saklandığı ve dünyaya sunulduğu 7/24 açık bilgisayardır.</p>
+            <p>Kendi web sitenizi yayınlamak istediğinizde emlak dünyasından bir benzetme yapabiliriz.</p>
 
-            <hr class="my-4" style="border-color: #444;">
-
-            <div class="d-flex align-items-center justify-content-center p-3 border border-secondary rounded bg-dark">
-                <div class="text-center me-4">
-                    <span style="font-size:2rem;">🌍</span><br>
-                    <span class="text-info">Domain</span><br>
-                    <small>Tabela (Adres)</small>
-                </div>
+            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
                 
-                <div class="h2 text-muted">+</div>
-
-                <div class="text-center ms-4">
-                    <span style="font-size:2rem;">🖥️</span><br>
-                    <span class="text-warning">Hosting</span><br>
-                    <small>Depo (Sunucu)</small>
+                <div style="flex: 1; min-width: 280px; background: #2c3034; border-radius: 10px; overflow: hidden;">
+                    <div style="background: #0d6efd; color: white; padding: 10px; text-align: center; font-weight: bold;">1. DOMAIN (Alan Adı)</div>
+                    <div style="padding: 20px; text-align: center;">
+                        <div style="font-size: 3rem;">🏷️</div>
+                        <p style="margin-top: 10px; color: #ced4da;">Sitenizin adresidir. (Örn: google.com)</p>
+                        <small style="color: #6c757d;">Tıpkı evinizin açık adresi gibi. İnsanlar sizi bu isimle bulur.</small>
+                    </div>
                 </div>
+
+                <div style="flex: 1; min-width: 280px; background: #2c3034; border-radius: 10px; overflow: hidden;">
+                    <div style="background: #198754; color: white; padding: 10px; text-align: center; font-weight: bold;">2. HOSTING (Barındırma)</div>
+                    <div style="padding: 20px; text-align: center;">
+                        <div style="font-size: 3rem;">🏠</div>
+                        <p style="margin-top: 10px; color: #ced4da;">Dosyaların durduğu yer.</p>
+                        <small style="color: #6c757d;">Tıpkı evinizin arazisi veya binası gibi. 7/24 açık olan bilgisayarlardır (Sunucu).</small>
+                    </div>
+                </div>
+
             </div>
-        `
+            <br>
+            <p class="text-info">Domain bir yön tabelasıdır, Hosting ise o tabelanın götürdüğü evdir.</p>
+        `,
+        code: null
     },
 
-    // 6. ALAN ADI UZANTILARI
+    // 6. HTTP ve HTTPS
     {
-        id: "kavram-uzantilar",
+        id: "kavram-http",
         category: "0. Temel Kavramlar",
-        title: "Alan Adı Uzantıları (TLD)",
+        title: "HTTP Protokolü ve Güvenlik",
         description: `
-            <p>Domainlerin sonundaki uzantılar, sitenin amacını veya ait olduğu ülkeyi belirtir. Bunlara TLD (Top Level Domain) denir.</p>
-            <p>En sık kullanılanlar şunlardır:</p>
+            <p>İnternette veriler bir yerden bir yere giderken belirli kurallara (Protokol) uyar.</p>
 
-            <table class="table table-dark table-striped table-bordered text-center mt-3">
-                <thead>
-                    <tr>
-                        <th>Uzantı</th>
-                        <th>Anlamı</th>
-                        <th>Kullanım Alanı</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="text-info">.com</td>
-                        <td>Commercial</td>
-                        <td>Ticari (Genel)</td>
-                    </tr>
-                    <tr>
-                        <td class="text-info">.org</td>
-                        <td>Organization</td>
-                        <td>Vakıf / Örgüt</td>
-                    </tr>
-                    <tr>
-                        <td class="text-info">.edu</td>
-                        <td>Education</td>
-                        <td>Üniversiteler</td>
-                    </tr>
-                    <tr>
-                        <td class="text-info">.gov</td>
-                        <td>Government</td>
-                        <td>Devlet Kurumları</td>
-                    </tr>
-                    <tr>
-                        <td class="text-info">.tr</td>
-                        <td>Country Code</td>
-                        <td>Türkiye</td>
-                    </tr>
-                </tbody>
-            </table>
-        `
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                
+                <div style="border: 1px solid #e74c3c; border-radius: 8px; padding: 15px; opacity: 0.7;">
+                    <h5 style="color: #e74c3c;">HTTP (Güvensiz)</h5>
+                    <div style="font-size: 2rem; text-align: center;">✉️</div>
+                    <p style="font-size: 0.8rem; margin-top: 10px;">
+                        Bilgiler "Açık Kartpostal" gibi gönderilir. Yolda biri kartpostalı yakalarsa, üzerindeki şifrenizi veya mesajınızı okuyabilir.
+                    </p>
+                </div>
+
+                <div style="border: 1px solid #2ecc71; border-radius: 8px; padding: 15px; background: rgba(46, 204, 113, 0.1);">
+                    <h5 style="color: #2ecc71;">HTTPS (Güvenli)</h5>
+                    <div style="font-size: 2rem; text-align: center;">🔐</div>
+                    <p style="font-size: 0.8rem; margin-top: 10px;">
+                        Bilgiler "Zırhlı Çelik Kasa" içinde gönderilir (SSL Sertifikası). Yolda biri yakalasa bile kasayı açamaz, veriyi okuyamaz.
+                    </p>
+                </div>
+
+            </div>
+            <p style="margin-top: 15px;">Google ve modern tarayıcılar, HTTPS kullanmayan siteleri "Güvenli Değil" olarak işaretler.</p>
+        `,
+        code: null
     },
 
-    // 7. MVC MİMARİSİ
+    // 7. VERİTABANI
     {
-        id: "kavram-mvc",
+        id: "kavram-db",
         category: "0. Temel Kavramlar",
-        title: "MVC Mimarisi",
+        title: "Veritabanı (Database)",
         description: `
-            <p><strong>MVC (Model-View-Controller)</strong>, büyük projelerde kod karmaşasını önlemek için kullanılan bir düzendir.</p>
-            <ul>
-                <li><strong>Model (Veri):</strong> Veritabanı işlemleri (Şef).</li>
-                <li><strong>View (Görünüm):</strong> Kullanıcının gördüğü ekran (Tabak).</li>
-                <li><strong>Controller (Kontrolcü):</strong> İkisi arasındaki köprü (Garson).</li>
-            </ul>
-
-            <hr class="my-4" style="border-color: #444;">
-
-            <div class="d-flex justify-content-between text-center text-white p-2 border border-secondary rounded bg-dark">
-                <div class="bg-primary p-2 rounded" style="width:30%">
-                    <strong>View</strong><br>
-                    <small>Kullanıcı Ekranı</small>
+            <p>Web sitelerinde kullanıcı adları, şifreler, ürünler nerede saklanır?</p>
+            
+            <div style="display: flex; align-items: center; background: #1a1d20; padding: 20px; border-radius: 10px;">
+                <div style="width: 80px; height: 100px; border: 3px solid #adb5bd; border-radius: 50%/20px; position: relative; display: flex; align-items: center; justify-content: center; color: #adb5bd; font-weight: bold;">
+                    <div style="position: absolute; top: 15px; left: -3px; right: -3px; height: 1px; background: #adb5bd;"></div>
+                    <div style="position: absolute; top: 45px; left: -3px; right: -3px; height: 1px; background: #adb5bd;"></div>
+                    <div style="position: absolute; top: 75px; left: -3px; right: -3px; height: 1px; background: #adb5bd;"></div>
+                    DATA
                 </div>
-                <div class="align-self-center">⬅➡</div>
-                <div class="bg-warning p-2 rounded text-dark" style="width:30%">
-                    <strong>Controller</strong><br>
-                    <small>Yönetici</small>
-                </div>
-                <div class="align-self-center">⬅➡</div>
-                <div class="bg-secondary p-2 rounded" style="width:30%">
-                    <strong>Model</strong><br>
-                    <small>Veritabanı</small>
+                <div style="margin-left: 20px;">
+                    <h5 style="color: #fff;">Dijital Arşiv Dolabı</h5>
+                    <p style="color: #adb5bd;">Veritabanı, bilgilerin düzenli bir şekilde raflara dizildiği devasa bir excel tablosu gibidir.</p>
+                    <p><strong>Örnekler:</strong> MySQL (Tablolu), MongoDB (Belge bazlı).</p>
                 </div>
             </div>
-        `
+        `,
+        code: null
+    },
+
+    // 8. FRAMEWORKLER
+    {
+        id: "kavram-framework",
+        category: "0. Temel Kavramlar",
+        title: "Framework (Çatı) Nedir?",
+        description: `
+            <p>Kod yazarken Amerika'yı yeniden keşfetmeye gerek yoktur. </p>
+
+            <div style="background: #2b3035; padding: 20px; border-radius: 10px;">
+                <p><strong>Örnek:</strong> Bir ev yapacaksınız.</p>
+                <ul>
+                    <li style="margin-bottom: 10px;">
+                        <span style="color: #e74c3c;">Saf Kod (Vanilla):</span> 
+                        Tuğlaları tek tek kendiniz döküp, çimentoyu kendiniz karıştırıp duvarı örmektir. Çok esnektir ama çok zaman alır.
+                    </li>
+                    <li>
+                        <span style="color: #3dd5f3;">Framework (Bootstrap/React):</span> 
+                        Hazır prefabrik duvarları ve kolonları getirip birleştirmektir. Çok hızlıdır ve standartlara uygundur.
+                    </li>
+                </ul>
+            </div>
+            <p>Dersimizde kullandığımız <strong>Bootstrap</strong>, CSS için hazırlanmış hazır bir kalıp kütüphanesidir.</p>
+        `,
+        code: null
     }
 ];
