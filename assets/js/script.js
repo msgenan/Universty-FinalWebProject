@@ -1,32 +1,26 @@
-/* SCRIPT.JS
-   Main Logic File (Ana Mantık Dosyası)
-   -------------------------------------------------
-   This script combines all data modules and renders the sidebar menu.
-   Bu script tüm veri modüllerini birleştirir ve sol menüyü oluşturur.
-*/
+/* ========================================
+   SCRIPT.JS - Main Logic File
+   ======================================== */
 
-// 1. COMBINE DATA (Verileri Birleştir)
-// We merge all separate data files into one big list.
+// Combine all data modules into one array
 const courseData = [
-    ...conceptsData,   // Temel Kavramlar
-    ...htmlData,       // HTML
-    ...cssData,        // CSS
-    ...bootstrapData,  // Bootstrap (Artık CSS kategorisi altında işlenecek)
-    ...jsData          // JavaScript
+    ...conceptsData,
+    ...htmlData,
+    ...cssData,
+    ...bootstrapData,
+    ...jsData
 ];
 
-// 2. INITIALIZE (Başlatma)
-// Run this when the page loads.
+// Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
-    renderSidebarMenu(); // Build the menu (Menüyü kur)
-    showWelcome();       // Show welcome screen (Hoşgeldin ekranını göster)
+    renderSidebarMenu();
+    showWelcome();
 });
 
-// 3. SHOW WELCOME SCREEN (Hoşgeldin Ekranı)
+// Show welcome screen
 function showWelcome() {
     const contentArea = document.getElementById('content-area');
     
-    // Clear active selection (Seçimi temizle)
     document.querySelectorAll('.list-group-item').forEach(el => el.classList.remove('active'));
 
     contentArea.innerHTML = `
@@ -45,26 +39,23 @@ function showWelcome() {
     `;
 }
 
-// 4. RENDER SIDEBAR (Sol Menüyü Oluşturma - TAMAMEN TEMİZLENMİŞ)
+// Render sidebar menu
 function renderSidebarMenu() {
     const menuContainer = document.getElementById('accordionMenu');
-    menuContainer.innerHTML = ''; // Önce temizle
+    menuContainer.innerHTML = '';
     
-    // Benzersiz ana kategorileri bul
     const categories = [...new Set(courseData.map(item => item.category))];
 
     categories.forEach((category, index) => {
         const headerId = `heading${index}`;
         const collapseId = `collapse${index}`;
 
-        // --- İSİM TEMİZLEME İŞLEMİ ---
-        // 1. replace(/^\d+\.\s*/, '')   -> Baştaki "1. " gibi sayıları siler.
-        // 2. replace(/\s*\(.*?\)/, '')   -> " (İskelet)" gibi parantezli kısımları siler.
+        // Clean category name: remove numbers and parentheses
         const cleanCategoryName = category
             .replace(/^\d+\.\s*/, '')    
-            .replace(/\s*\(.*?\)/, '');  
+            .replace(/\s*\(.*?\)/, '');
 
-        // Ana Kategori Kutusunu Yarat
+        // Create accordion item
         const accordionItem = document.createElement('div');
         accordionItem.className = 'accordion-item';
 
@@ -76,8 +67,7 @@ function renderSidebarMenu() {
             </h2>
             <div id="${collapseId}" class="accordion-collapse collapse" data-bs-parent="#accordionMenu">
                 <div class="accordion-body p-0">
-                    <div class="list-group list-group-flush" id="list-${index}">
-                    </div>
+                    <div class="list-group list-group-flush" id="list-${index}"></div>
                 </div>
             </div>
         `;
@@ -86,13 +76,13 @@ function renderSidebarMenu() {
         const listGroup = accordionItem.querySelector(`#list-${index}`);
         const allTopics = courseData.filter(item => item.category === category);
 
-        // --- A: Normal Konular ---
+        // Add normal topics (without subcategory)
         const normalTopics = allTopics.filter(item => !item.subcategory);
         normalTopics.forEach(topic => {
             createMenuLink(topic, listGroup);
         });
 
-        // --- B: Alt Klasörler ---
+        // Add subcategory folders
         const subCategories = [...new Set(allTopics.map(item => item.subcategory).filter(Boolean))];
         
         subCategories.forEach((subCatName, subIndex) => {
@@ -108,8 +98,7 @@ function renderSidebarMenu() {
                             </button>
                         </h2>
                         <div id="${subId}" class="accordion-collapse collapse">
-                            <div class="list-group list-group-flush" id="subList-${subId}">
-                            </div>
+                            <div class="list-group list-group-flush" id="subList-${subId}"></div>
                         </div>
                     </div>
                 </div>
@@ -129,42 +118,38 @@ function renderSidebarMenu() {
     });
 }
 
-// Helper Function: Create a Link (Link Oluşturucu)
+// Create menu link element
 function createMenuLink(topic, container, isSub = false) {
     const link = document.createElement('a');
     link.className = 'list-group-item list-group-item-action';
     link.innerText = topic.title;
     link.href = "#";
     
-    // Indent if it's a sub-item (Alt öğeyse girinti ver)
-    if(isSub) {
+    if (isSub) {
         link.style.paddingLeft = "3.5rem"; 
         link.style.fontSize = "0.9rem";
     }
 
-    // Click Event (Tıklama Olayı)
     link.onclick = (e) => {
         e.preventDefault(); 
         loadContent(topic.id);
         
-        // Visual Feedback (Aktif sınıfı ekle)
         document.querySelectorAll('.list-group-item').forEach(el => el.classList.remove('active'));
         link.classList.add('active');
     };
+    
     container.appendChild(link);
 }
 
-// 5. LOAD CONTENT (İçeriği Yükle)
+// Load content into main area
 function loadContent(topicId) {
     const topic = courseData.find(item => item.id === topicId);
     if (!topic) return;
 
     const contentArea = document.getElementById('content-area');
-    let codeHtml = ''; 
+    let codeHtml = '';
 
-    // If code exists, create the code block (Kod varsa kutuyu oluştur)
     if (topic.code) {
-        // Escape HTML characters for display (HTML karakterlerini metne çevir)
         const escapedCode = topic.code
             .replace(/&/g, "&amp;")
             .replace(/</g, "&lt;")
@@ -183,7 +168,6 @@ function loadContent(topicId) {
         `;
     }
 
-    // Inject final HTML (Son HTML'i ekrana bas)
     contentArea.innerHTML = `
         <div style="animation: fadeIn 0.5s ease;">
             <h2 class="topic-title">${topic.title}</h2>
